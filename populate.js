@@ -9,7 +9,10 @@ const jsonProducts = require("./products.json");
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
+    console.log("success conected to the database");
   } catch (error) {
     console.log(error);
   }
 };
+
+start();
