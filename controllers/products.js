@@ -36,6 +36,15 @@ const getAllProducts = async (req, res) => {
     result = result.select(fieldsList);
   }
 
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+  result = result.skip(skip).limit(limit);
+
+  // 23  div en paguinas de a 7
+  // resulta 7 7 7 2 = 23
+  // son 4 paguinas, 3 de 7 y una de 2
+
   const products = await result;
   res.status(200).json({ products, nbHits: products.length });
 };
