@@ -1,11 +1,7 @@
 const Product = require("../models/product");
 
 const getAllProductsStatic = async (req, res) => {
-  const products = await Product.find({})
-    .sort("name")
-    .select("name price")
-    .limit(10)
-    .skip(1);
+  const products = await Product.find({}).sort("name").select("name price");
   res.status(200).json({ products, nbHits: products.length });
 };
 const getAllProducts = async (req, res) => {
@@ -41,7 +37,8 @@ const getAllProducts = async (req, res) => {
   const skip = (page - 1) * limit;
   result = result.skip(skip).limit(limit);
 
-  // 23  div en paguinas de a 7
+  // en database tenemos 23 objetos
+  // 23  div en paguinas de a 7 objetos
   // resulta 7 7 7 2 = 23
   // son 4 paguinas, 3 de 7 y una de 2
 
