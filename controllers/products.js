@@ -21,6 +21,15 @@ const getAllProducts = async (req, res) => {
   }
 
   if (numericFilters) {
+    const operatorMap = {
+      ">": "$gt",
+      ">=": "$gte",
+      "=": "$eq",
+      "<": "$lt",
+      "<=": "$lte",
+    };
+    const regEx = /\b(<|>|>=|=|<|<=)\b/g;
+
     console.log(numericFilters);
   }
 
